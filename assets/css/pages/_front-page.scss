@@ -1,0 +1,335 @@
+.front-page__content {
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: repeat(4, max-content);
+
+    //* Services section
+    .services {
+        background: linear-gradient(70deg, var(--color-white) 0%, var(--color-white) 35%, var(--color-grey-light) 35%, var(--color-grey-light) 100%);
+        margin-top: -12rem; // Moves section up tp hide white space behind header
+        padding: 20rem 0 10rem 0; // Moves content in section down to normalize section space
+        text-align: center;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: max-content min-content;
+        justify-items: center;
+
+        &__heading {
+            display: grid;
+
+        }
+
+        &__container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto;
+            grid-column-gap: 8rem;
+            padding: 6rem;
+            max-width: 110rem;
+
+            @include respond(medium) {
+                grid-template-columns: auto;
+                grid-template-rows: repeat(3, 1fr);
+            }
+
+            .service {
+                display: grid;
+                grid-template-columns: min-content;
+                grid-template-rows: repeat(4, max-content);
+                justify-items: center;
+
+                &:nth-child(2) {
+                    margin-top: 8rem;
+
+                    @include respond(medium) {
+                        margin-top: 0;
+                    }
+                }
+
+                &:not(:first-child) {
+
+                    @include respond(medium) {
+                        margin-top: 5rem;
+                    }
+                }
+
+                &__circle {
+                    position: relative;
+                    display: grid;
+                    align-content: center;
+                    justify-content: center;
+                    width: 22.5rem;
+                    height: 22.5rem;
+                    margin-bottom: 3rem;
+                    border: 1px solid var(--color-secondary-light-2);
+                    border-radius: 100%;
+                    background-color: transparent;
+                    cursor: pointer;
+
+                    @include respond(medium) {
+                        width: 40vw;
+                        height: 40vw;
+                    }
+
+                    @include respond(small) {
+                        width: 70vw;
+                        height: 70vw;
+                    }
+
+                    &:hover {
+                        box-shadow: inset 0px 0px 0px 1rem var(--color-secondary);
+                        transition: box-shadow .5s cubic-bezier(0, 1.87, .83, .67);
+
+                        &>.service__icon {
+                            transform: scale(1.4);
+                        }
+                    }
+                }
+
+                &__icon {
+                    height: 8rem;
+                    width: 8rem;
+                    fill: var(--color-secondary);
+                    transition: all .5s cubic-bezier(0, 1.87, .83, .67);
+
+                    @include respond(med-small) {
+                        height: 20vw;
+                        width: 20vw;
+                    }
+                }
+
+                &__line {
+                    width: 1px;
+                    background: var(--color-secondary-light-2);
+                    height: 2.5rem;
+                    position: absolute;
+                    bottom: -25px;
+                    left: 50%;
+                }
+
+                &__dot {
+                    width: 8px;
+                    height: 8px;
+                    background: var(--color-secondary-light-2);
+                    border-radius: 50%;
+                    position: absolute;
+                    bottom: -32px;
+                    left: 50%;
+                    margin-left: -4px;
+                }
+
+                p {
+                    font-size: $font-md;
+                    font-style: italic;
+                    margin-bottom: 2rem;
+                }
+            }
+        }
+
+        // Bottom border for the header
+        &::before {
+            content: '';
+            height: 48rem;
+            background-color: var(--color-primary);
+            position: absolute;
+            display: block;
+            top: 5px;
+            left: 0;
+            right: 0;
+            z-index: 1;
+
+            @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+                //Cuts out a angular strip of image if browser supports clip path
+                clip-path: polygon(100% 0, 100% 75%, 22% 100%, 0 75%, 0 0);
+            }
+
+            @include respond(medium) {
+                height: 48rem;
+
+                @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+                    //Cuts out a angular strip of image if browser supports clip path
+                    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+                }
+            }
+
+            @include respond(med-small) {
+                height: 47rem;
+
+            }
+        }
+    }// .Services section
+
+    //* About section
+    .about {
+        background-image: linear-gradient(to right bottom, var(--color-secondary), var(--color-secondary-light));
+        clip-path: polygon(50% 10%, 100% 0, 100% 90%, 50% 100%, 0 89%, 0 0);
+        margin-top: -15rem;
+        padding: 15rem 5rem;
+        z-index: 5;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: max-content min-content;
+        justify-items: center;
+
+        @include respond(medium) {
+            clip-path: polygon(50% 5%, 100% 0, 100% 95%, 50% 100%, 0 95%, 0 0);
+        }
+
+        &__heading {
+            margin-bottom: 4.5rem;
+        }
+
+        &__container {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(15rem, 20rem));
+            grid-column-gap: 3rem;
+            margin-bottom: 5rem;
+
+            @include respond(medium) {
+                grid-template-columns: max-content;
+                grid-column-gap: 0;
+                grid-template-rows: repeat(4, max-content);
+                grid-row-gap: 3rem;
+            }
+        }
+
+        &__clip {
+            background: linear-gradient(to right bottom, var(--color-white) 0%, var(--color-white) 50%, var(--color-grey-light) 50%, var(--color-grey-light) 100%);
+            padding: 2.5rem;
+            display: grid;
+            grid-template-rows: repeat(3, min-content);
+            justify-items: center;
+            border-radius: 2.5px;
+            outline: 3px inset var(--color-secondary);
+            outline-offset: -10px;
+            text-align: center;
+            opacity: .9;
+
+            @include respond(medium) {
+                width: 75vw;
+            }
+
+
+
+            p {
+                font-size: 1.4rem;
+                font-weight: 200;
+                letter-spacing: .05rem;
+
+                @include respond(medium) {
+                    font-size: 1.6rem;
+                }
+            }
+        }
+
+        &__icon {
+            fill: var(--color-primary);
+            height: 5rem;
+            width: 5rem;
+
+            @include respond(medium) {
+                height: 10vw;
+                width: 10vw;
+            }
+        }
+    }// .About section
+
+    //* Current project section
+    .current-project {
+        display: grid;
+        justify-items: center;
+        position: relative;
+        padding: 10rem 5rem;
+        z-index: 4;
+        margin-top: -8rem;
+        margin-bottom: -7rem;
+        background: linear-gradient(to right, var(--color-white) 0%, var(--color-white) 50%, var(--color-grey-light) 50%, var(--color-grey-light) 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 90%, 0 100%);
+
+        @include respond(medium) {
+            clip-path: polygon(0 0%, 100% 0, 100% 100%, 50% 95%, 0 100%);
+        }
+
+        @include respond(med-small) {
+            background: var(--color-grey-light);
+        }
+
+        &__container {
+            width: 100%;
+            margin: 6rem 0;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(10rem, 40rem));
+            grid-column-gap: 10rem;
+            justify-content: center;
+            font-size: 1.3rem;
+
+            @include respond(med-small) {
+                grid-template-rows: repeat(2, max-content);
+                grid-template-columns: 100%;
+                grid-row-gap: 2rem;
+            }
+        }
+
+        &__details {
+            display: grid;
+            grid-template-rows: repeat(3, max-content);
+            line-height: 1.9rem;
+            font-size: $font-md
+        }
+
+        &__heading {
+            width: max-content;
+        }
+
+        &__timeline {}
+
+        &__list {
+            list-style: none;
+            display: grid;
+            grid-row-gap: .5rem;
+            font-size: $font-lg;
+        }
+
+        &__item::before {
+            content: "";
+            display: inline-block;
+            height: 1rem;
+            width: 1rem;
+            margin-right: .7rem;
+        }
+
+        &__item--done::before {
+            content: "";
+            display: inline-block;
+            height: 1rem;
+            width: 1rem;
+            margin-right: .7rem;
+            //Older browsers - SVG as image no color options 
+            background-image: url(assets/img/check.svg);
+            background-size: cover;
+
+            @supports (mask-image: url()) or (-webkit-mask-image: url()) {
+                //Newer Browsers - Mask SVG show bg color behind 
+                background-color: var(--color-secondary);
+                mask-image: url(assets/img/check.svg);
+                mask-size: cover;
+                background-image: none;
+            }
+        }
+
+        &__item--in-progress::before {
+            content: "";
+            display: inline-block;
+            height: 1rem;
+            width: 1rem;
+            background-color: var(--color-primary);
+            margin-right: .7rem;
+            border-radius: 50%;
+            animation-name: pulse;
+            animation-duration: 1.5s;
+            transform-origin: 70% 70%;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+    }// .Current project section
+}

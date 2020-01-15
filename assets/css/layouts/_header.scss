@@ -1,0 +1,357 @@
+.front-page {
+
+    //* Front page header
+    & .header {
+        grid-area: header;
+        display: grid;
+        grid-template-columns: repeat(2, max-content) 1fr;
+        grid-template-rows: repeat(2, max-content);
+        grid-row-gap: 7.5rem;
+        grid-column-gap: 10%;
+        align-items: center;
+        padding: 2.5rem 0 15rem 5rem;
+        z-index: 10;
+
+        background-image: linear-gradient(to right bottom,
+                rgba(var(--color-secondary-a), 0.99),
+                rgba(var(--color-secondary-light-a), 0.95)),
+            url(assets/img/header-bg.jpg);
+        background-size: cover;
+        background-position: center;
+
+        @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            //Cuts out a angular strip of image if browser supports clip path
+            clip-path: polygon(100% 0, 100% 75%, 22% 100%, 0 75%, 0 0);
+        }
+
+        @include respond(medium) {
+            grid-template-columns: max-content auto;
+            grid-template-rows: repeat(3, max-content);
+            grid-row-gap: 5rem;
+            padding: 2.5rem 2.5rem 5rem 2.5rem;
+
+            @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+                //Cuts out a angular strip of image if browser supports clip path
+                clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            }
+
+        }
+
+        &__logo {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: min-content max-content;
+            align-items: center;
+            grid-column-gap: 5px;
+            text-decoration: none;
+            transition: all .2s ease-in;
+
+            &:hover {
+                filter: brightness(75%);
+            }     
+        }
+
+        &__icon {
+            width: 3.8rem;
+            height: 3.8rem;
+        }
+
+        &__name {
+            color: #fff;
+            font-size: $font-xlg;
+            display: grid;
+            grid-template-columns: repeat(2, max-content);
+            justify-content: center;
+            align-items: center;
+
+            &--first {
+                font-weight: 600;
+            }
+
+            &--last {
+                font-weight: 100;
+            }
+        }
+   
+        &__heading {
+            display: grid;
+            grid-template-columns: min-content;
+            grid-template-rows: min-content;
+
+            @include respond(medium) {
+                grid-template-columns: 100%;
+            }
+            
+            span {
+                position: absolute;
+                left: -9999px;
+            }
+        }
+
+        .next-section {
+            justify-self: center;
+
+            @include respond(medium) {
+                grid-column: 1/ -1;
+            }
+
+            &__link {
+                height: 8rem;
+                width: 8rem;
+                border: .3rem solid var(--color-primary);
+                border-radius: 100%;
+                //Horizontially and vertically center icon
+                display: grid;
+                align-content: center;
+                justify-content: center;
+                animation: bounce 2s cubic-bezier(0.280, 0.840, 0.420, 1) 1s infinite both;
+                transition: all .2s ease-in;
+    
+                @include respond(med-small) {
+                    height: 5rem;
+                    width: 5rem;
+                }
+    
+                &:hover {
+                    animation: none;
+                    filter: brightness(75%);
+                }
+            }
+
+            &__icon {
+                width: 4rem;
+                height: 4rem;
+                fill: var(--color-white);
+
+                @include respond(med-small) {
+                    height: 3rem;
+                    width: 3rem;
+                }
+            }
+        }
+
+        .share {
+            display: grid;
+            grid-template-columns: min-content;
+            grid-template-rows: repeat(4, min-content);
+            grid-row-gap: 1.5rem;
+
+            &__link {
+                display: grid;
+                place-content: center;
+
+                @include respond(med-small) {
+                    border: 1px solid var(--color-white);
+                    border-radius: 50%;
+                    padding: 5px;
+                    height: 4rem;
+                    width: 4rem;
+                }
+            }
+            
+            &__icon {
+                height: 1.3rem;
+                width: 1.3rem;
+                fill: var(--color-white);
+                transition: transform .5s cubic-bezier(0, 1.87, .83, .67);
+
+                @include respond(med-small) {
+                    height: 2rem;
+                    width: 2rem;
+                }
+
+                &:hover {
+                    transform: scale(2);
+
+                    @include respond(med-small) {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+
+        &__main {
+            fill: var(--color-white);
+            width: 26rem;
+            height: 7.5rem;
+
+            @include respond(medium) {
+                width: 45vw;
+            }
+        }
+
+        &__sub {
+            fill: var(--color-primary);
+            width: 50rem;
+            height: 10rem;
+
+            @include respond(medium) {
+                width: 70vw;
+            }
+        }
+    }
+} // .Front page header
+
+//* General pages header
+.general {
+
+    & .header {
+        grid-area: header;
+        display: grid;
+        grid-template-columns: max-content 50%;
+        grid-template-rows: max-content;
+        grid-row-gap: 7.5rem;
+        grid-column-gap: 3rem;
+        align-items: center;
+        padding: 2.5rem 0 15rem 5rem;
+        z-index: 2;
+        background-image: linear-gradient(to right bottom, var(--color-secondary), var(--color-secondary-light));
+    
+    
+    
+        @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            //Cuts out a angular strip of image if browser supports clip path
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+        }
+
+        @include respond(med-small) {
+            grid-template-columns: max-content 80%;
+            padding: 2.5rem;
+            grid-row-gap: 4.5rem;
+
+            @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+                //Cuts out a angular strip of image if browser supports clip path
+                clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            }
+        }
+    
+    
+        &__logo {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: min-content max-content;
+            align-items: center;
+            grid-column-gap: 5px;
+            text-decoration: none;
+            transition: all .2s ease-in;
+
+            &:hover {
+                filter: brightness(75%);
+            }
+        }
+
+        &__icon {
+            width: 3.8rem;
+            height: 3.8rem;
+        }
+
+        &__name {
+            color: #fff;
+            font-size: $font-xlg;
+            display: grid;
+            grid-template-columns: repeat(2, max-content);
+            justify-content: center;
+            align-items: center;
+
+            &--first {
+                font-weight: 600;
+            }
+
+            &--last {
+                font-weight: 100;
+            }
+        }
+    
+        .share {
+            display: grid;
+            grid-template-columns: min-content;
+            grid-template-rows: repeat(4, min-content);
+            grid-row-gap: 1.5rem;
+
+            &__link {
+                display: grid;
+                place-content: center;
+
+                @include respond(med-small) {
+                    border: 1px solid var(--color-white);
+                    border-radius: 50%;
+                    padding: 5px;
+                    height: 4rem;
+                    width: 4rem;
+                }
+            }
+    
+    
+            &__icon {
+                height: 1.3rem;
+                width: 1.3rem;
+                fill: var(--color-white);
+                transition: transform .5s cubic-bezier(0, 1.87, .83, .67);
+
+                @include respond(med-small) {
+                    height: 2rem;
+                    width: 2rem;
+                }
+
+                &:hover {
+                    transform: scale(2);
+
+                    @include respond(med-small) {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+
+        &__breadcrumb {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+        }
+
+        &__title {
+            color: var(--color-white);
+            font-size: 4rem;
+
+            @include respond(medium) {
+                font-size: 5vw;
+            }
+
+            @include respond(small) {
+                font-size: 3.5rem;
+            }
+        }
+
+        &__post-info {
+            display: grid;
+            grid-template-columns: min-content max-content;
+            grid-column-gap: 1rem;
+            align-items: center;
+
+            img {
+                border: 2px solid var(--color-white);
+                border-radius: 50%;
+            }
+        }
+
+        &__details {
+            text-decoration: none;
+            color: var(--color-white);
+            font-weight: 100;
+            font-size: 1.4rem;
+            line-height: 1.4rem;
+            transition: color .2s ease-in;
+
+            &:hover {
+                color: var(--color-primary);
+            }
+        }
+
+    }
+}
+
